@@ -15,5 +15,9 @@ export default EmberUploader.FileField.extend({
 			uploader.upload(files[0]);
 
 		}	
+		
+		uploader.on('didUpload', e => {
+			alert("upload successful");
+		});
 	}.observes('files')
 });
