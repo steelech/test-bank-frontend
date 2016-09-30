@@ -2,22 +2,40 @@ import Ember from 'ember';
 import EmberUploader from 'ember-uploader';
 
 export default EmberUploader.FileField.extend({
-	url: "http://localhost:3000/sign",
+	fileInfo: [],
+	signingUrl: "http://localhost:3000/sign",
+	multiple: true,
+	onComplete: "onComplete",
 	filesDidChange: function() {
-		let uploadUrl = this.get("url");
-		var files = this.get("files");
-		console.log(this.get("url"));
-		var uploader = EmberUploader.S3Uploader.create({
-			url: this.get("url")
-		});
-
+		let signingUrl = this.get("signingUrl"),
+			serverUrl = this.get("serverUrl"),
+			files = this.get("files"),
+			_this = this,
+			serverUploader = EmberUploader.Uploader.create({
+				url: serverUrl
+			}),
+			s3Uploader = EmberUploader.S3Uploader.create({
+				url: signingUrl
+			});
 		if(!Ember.isEmpty(files)) {
-			uploader.upload(files[0]);
 
-		}	
-		
-		uploader.on('didUpload', e => {
-			alert("upload successful");
+			if(files.length == 1) {
+				s3Uploader.upload(files[0]);
+			} else {
+				console.log("multiple files detected");
+				serverUploader.upload(files);
+			}
+
+			console.log(files);
+				
+		}
+		s3Uploader.on('didUpload', function(response) {
+			let res = $(response),
+				fullUrl = decodeURIComponent(res.find('Location')[0].textContent),
+				key = decodeURIComponent(res.find('Key')[0].textContent);
+		 	_this.sendAction('onComplete', {fullUrl: fullUrl, key: key});	
 		});
-	}.observes('files')
+
+	}.observes('files'),
+
 });
