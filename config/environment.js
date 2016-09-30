@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
+	  api: 'http://localhost:3000',
     modulePrefix: 'frontend',
     environment: environment,
     baseURL: '/',
