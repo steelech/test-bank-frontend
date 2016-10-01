@@ -4,6 +4,7 @@ import EmberUploader from 'ember-uploader';
 export default EmberUploader.FileField.extend({
 	fileInfo: [],
 	signingUrl: "http://localhost:3000/sign",
+	serverUrl: "http://localhost:3000/uploads",
 	multiple: true,
 	onComplete: "onComplete",
 	filesDidChange: function() {
