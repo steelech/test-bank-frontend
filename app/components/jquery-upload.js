@@ -5,7 +5,8 @@ export default Ember.Component.extend({
 		self = this;
 		this.$(".file-uploader").fileupload({
 			method: 'POST',
-			url: 'http://localhost:3000/uploads'
+			url: 'http://localhost:3000/uploads',
+			singleFileUploads: false
 
 		});
 	}
