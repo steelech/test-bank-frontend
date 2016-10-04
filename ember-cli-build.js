@@ -19,6 +19,9 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
-
+	app.import("bower_components/jquery/dist/jquery.js"); 
+	app.import("bower_components/jquery-ui/jquery-ui.js");
+	app.import("bower_components/jquery-file-upload/js/jquery.iframe-transport.js");
+	app.import("bower_components/jquery-file-upload/js/jquery.fileupload.js");
   return app.toTree();
 };
