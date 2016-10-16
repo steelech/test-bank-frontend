@@ -8,6 +8,9 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
+	    EXTEND_PROTOTYPES: {
+		    Date: false,
+	    },
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
@@ -26,6 +29,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+	  //ENV.APP.EXTEND_PROTOTYPES.Date = false;
   }
 
   if (environment === 'test') {
