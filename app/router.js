@@ -7,16 +7,8 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('posts');
-  this.route('home', {path: '/'});
-
-  this.route('users', function() {
-    this.route('new');
-  });
-
-  this.route('sessions', function() {
-    this.route('new');
-  });
-  this.route('top_secret');
+  this.route('login');
+  this.route('dashboard');
 });
 
 export default Router;

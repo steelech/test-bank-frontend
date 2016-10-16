@@ -1,9 +1,5 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-export default Ember.Route.extend({
-	init: function() {
-		//this._super();
-		//window.App.AuthManager = AuthManager.create();
-		
-	}
-});
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+export default Ember.Route.extend(ApplicationRouteMixin);
+

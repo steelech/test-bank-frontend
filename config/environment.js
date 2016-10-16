@@ -3,10 +3,13 @@
 module.exports = function(environment) {
   var ENV = {
 	  api: 'http://localhost:3000',
-    modulePrefix: 'frontend',
-    environment: environment,
-    baseURL: '/',
-    locationType: 'auto',
+    	modulePrefix: 'frontend',
+    	environment: environment,
+    	baseURL: '/',
+    	locationType: 'auto',
+	  contentSecurityPolicy: {
+		  'connect-src': "*"
+	  },
     EmberENV: {
 	    EXTEND_PROTOTYPES: {
 		    Date: false,
@@ -47,6 +50,12 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+
+	ENV['ember-simple-auth'] = {
+		routeAfterAuthentication: 'dashboard',
+		routeIfAlreadyAuthenticated: 'dashboard'
+
+	}	
 
   return ENV;
 };
