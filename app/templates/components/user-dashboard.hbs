@@ -2,3 +2,6 @@
 	Logged in as {{session.currentUser.email}}
 {{/if}}
 <h1>Hi</h1>
+{{#if session.currentUser}}
+	<a href="#" {{action 'logout'}}>Log out</a>
+{{/if}}
