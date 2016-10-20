@@ -1,0 +1,14 @@
+<h1>Signup</h1>
+<form {{action "register" on="submit"}}>
+	<label for="identification">Sign Up</label>
+	{{input value=identification placeholder="Enter Email"}}
+
+	<label for="password">Password</label>
+	{{input value=password type="password" placeholder="Enter password"}}
+
+	<label for="confirmation">Password Confirmation</label>
+	{{input value=confirmation type="password" placeholder="Enter password confirmation"}}
+
+	<button type="submit">Sign Up</button>
+	
+</form>
