@@ -1,7 +1,16 @@
 {{#if session.currentUser}}
 	Logged in as {{session.currentUser.email}}
 {{/if}}
-<h1>Hi</h1>
-{{#if session.currentUser}}
-	<a href="#" {{action 'logout'}}>Log out</a>
-{{/if}}
+<div class="jumbotron center">
+	<h1>Welcome, name</h1>
+	{{#if session.currentUser}}
+		<div class="dashboard-options">
+			<div class="upload-link">
+				{{#link-to 'posts'}}Upload a file{{/link-to}}
+			</div>
+			<div class="logout-link">
+				<a href="#" {{action 'logout'}}>Log out</a>
+			</div>
+		</div>
+	{{/if}}
+</div>

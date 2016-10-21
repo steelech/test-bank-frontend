@@ -1,14 +1,24 @@
-<h1>Signup</h1>
-<form {{action "register" on="submit"}}>
-	<label for="identification">Sign Up</label>
-	{{input value=identification placeholder="Enter Email"}}
-
-	<label for="password">Password</label>
-	{{input value=password type="password" placeholder="Enter password"}}
-
-	<label for="confirmation">Password Confirmation</label>
-	{{input value=confirmation type="password" placeholder="Enter password confirmation"}}
-
-	<button type="submit">Sign Up</button>
-	
-</form>
+<div class="jumbotron center">
+	<div class="signup-header">
+		<h1>Signup</h1>
+	</div>
+	<div class="signup-form">
+		<form {{action "register" on="submit"}}>
+			<div class="signup-id">
+				<label for="identification">Sign Up</label>
+				{{input value=identification placeholder="Enter Email"}}
+			</div>
+			<div class="signup-pass">
+				<label for="password">Password</label>
+				{{input value=password type="password" placeholder="Enter password"}}
+			</div>
+			<div class="signup-conf">
+				<label for="confirmation">Password Confirmation</label>
+				{{input value=confirmation type="password" placeholder="Enter password confirmation"}}
+			</div>
+			<div class="signup-submit">
+				<button type="submit" class="btn btn-default">Sign Up</button>
+			</div>
+		</form>
+	</div>
+</div>

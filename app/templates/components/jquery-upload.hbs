@@ -1,1 +1,13 @@
-<input type="file" class="file-uploader" id="fileupload" multiple>
+{{#if session.currentUser}}
+	Logged in as {{session.currentUser.email}}
+{{/if}}
+<div class="jumbotron center">
+	<div class="uploads-header">
+		<h1>Uploads</h1>
+	</div>
+	<div class="file-upload">
+		<div class="file-input">
+			<input type="file" class="file-uploader" id="fileupload" multiple>
+		</div>
+	</div>
+</div>

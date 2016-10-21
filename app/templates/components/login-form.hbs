@@ -1,12 +1,21 @@
-<form {{action "authenticate" on="submit"}}>
-	<label for="identification">Login</label>
-	{{input value=identification placeholder="Enter Login"}}
-
-	<label for="password">Password</label>
-	{{input value=password type="password" placeholder="Enter Password"}}
-
-	<button type="submit">Login</button>
-</form>
+<div class="jumbotron center">
+	<div class="login-header">
+		<h1>Login</h1>
+	</div>	
+	<form class="login-form"{{action "authenticate" on="submit"}}>
+		<div class="login-id">
+			<label for="identification">Login</label>
+			{{input value=identification placeholder="Enter Login"}}
+		</div>
+		<div class="login-pass">
+			<label for="password">Password</label>
+			{{input value=password type="password" placeholder="Enter Password"}}
+		</div>
+		<div class="login-submit">
+			<button type="submit">Login</button>
+		</div>
+	</form>
+</div>
 
 {{#if errorMessage}}
 	{{errorMessage}}

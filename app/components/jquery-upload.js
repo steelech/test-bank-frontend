@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+	session: Ember.inject.service('session'),
 	didInsertElement: function() {
 		self = this;
 		this.$(".file-uploader").fileupload({
