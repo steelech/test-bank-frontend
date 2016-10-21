@@ -3,12 +3,18 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 	session: Ember.inject.service('session'),
 	didInsertElement: function() {
-		self = this;
-		this.$(".file-uploader").fileupload({
-			method: 'POST',
-			url: 'http://localhost:3000/uploads',
-			singleFileUploads: false
+		var self = this;
+		this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
+			const headers = {};
+			headers[headerName] = headerValue;
+			this.$(".file-uploader").fileupload({
+				formData: {email: this.get('session').currentUser.email },
+				method: 'POST',
+				url: 'http://localhost:3000/uploads',
+				singleFileUploads: false,
+				headers: headers
 
-		});
+			});
+		})
 	}
 });

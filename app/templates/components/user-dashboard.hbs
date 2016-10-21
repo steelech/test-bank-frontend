@@ -3,7 +3,6 @@
 {{/if}}
 <div class="jumbotron center">
 	<h1>Welcome, name</h1>
-	{{#if session.currentUser}}
 		<div class="dashboard-options">
 			<div class="upload-link">
 				{{#link-to 'posts'}}Upload a file{{/link-to}}
@@ -12,5 +11,4 @@
 				<a href="#" {{action 'logout'}}>Log out</a>
 			</div>
 		</div>
-	{{/if}}
 </div>
