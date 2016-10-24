@@ -10,7 +10,6 @@ export default Ember.Component.extend({
 			return this.get('session').authenticate('authenticator:devise', identification, password).then(() => {
 				console.log(this.get("session").get("data").authenticated.token);
 				console.log(this.get("session").get("data").authenticated.email);
-				AWS.config.region = 'us-west-2';
 
 			}, (err) => {
 				alert("Error");
