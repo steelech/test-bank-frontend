@@ -11,4 +11,8 @@ export default ESASession.extend({
 			return DS.PromiseObject.create({ promise: promise });
 		}
 	}),
+	sessionToken: function() {
+		console.log(this.get('data'));
+	}
+
 });

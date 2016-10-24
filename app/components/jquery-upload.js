@@ -12,8 +12,11 @@ export default Ember.Component.extend({
 				method: 'POST',
 				url: 'http://localhost:3000/uploads',
 				singleFileUploads: false,
-				headers: headers
-
+				headers: headers,
+				done: function(e, data) {
+					var result = data.result;
+					alert(result.identity_id);
+				}
 			});
 		})
 	}

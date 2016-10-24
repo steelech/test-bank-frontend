@@ -26,5 +26,6 @@ module.exports = function(defaults) {
 	app.import("bower_components/bootstrap/dist/js/bootstrap.js");
 	app.import("bower_components/bootstrap/dist/css/bootstrap.css");
 	app.import("bower_components/js-cookie/src/js.cookie.js");
+	app.import("bower_components/aws-sdk/dist/aws-sdk.min.js")
   return app.toTree();
 };
