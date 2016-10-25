@@ -1,0 +1,71 @@
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
+.center {
+	text-align: center;
+}
+
+.dashboard-options {
+	display: inline-block;
+}
+
+.file-upload {
+	display: inline-block;
+}
+.ember-modal-dialog {
+	width: 500px;
+	height: 400px;
+}
+
+.new-upload-header {
+	text-align: center;
+}
+#name {
+	width: 50%;
+	margin-left: 25%;
+}
+
+#course {
+	width: 50%;
+	margin-left: 25%;
+}
+
+.new-upload-name {
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 25px;
+}
+
+
+.name {
+	padding-left: 25%;
+}
+
+.name-field {
+}
+
+
+.new-upload-course {
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+
+.course {
+	padding-left: 25%;
+}
+
+.course-field {
+
+}
+
+.new-upload-form {
+	margin-top: 25px;
+}
+
+
+.upload-form-submit {
+
+	margin-left: 42%;
+	margin-top: 25px;
+}

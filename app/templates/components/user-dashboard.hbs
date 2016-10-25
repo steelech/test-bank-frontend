@@ -10,8 +10,9 @@
 			<div class="logout-link">
 				<a href="#" {{action 'logout'}}>Log out</a>
 			</div>
+			<button class="btn btn-default" {{action 'viewImage'}}>View Upload</button>	
 		</div>
 		<div class="dashboard-uploads">
-			<button class="btn btn-default" {{action 'viewImage'}}>View Upload</button>	
+			{{user-uploads}}
 		</div>
 </div>

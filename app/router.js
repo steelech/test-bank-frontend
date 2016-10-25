@@ -6,7 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('posts');
+  this.route('uploads');
   this.route('login');
   this.route('dashboard');
   this.route('signup');

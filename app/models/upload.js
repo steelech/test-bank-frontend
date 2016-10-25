@@ -5,6 +5,6 @@ export default DS.Model.extend({
 	course: DS.attr('string'),
 	key: DS.attr('string'),
         bucket: DS.attr('string'),
-	url: DS.attr('string')	
-
+	url: DS.attr('string'),
+	user: DS.attr('string')	
 });

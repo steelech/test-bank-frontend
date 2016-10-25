@@ -21,6 +21,7 @@ export default Ember.Component.extend({
 						'cognito-identity.amazonaws.com': response.token
 					}
 				});
+				// refreshes credentials using AWS.STS.assumeRoleWithWebIdentity, callback
 				AWS.config.credentials.get(function() {
 					var s3 = new AWS.S3({
 						params: { Bucket: 'test-bank-assets' }
@@ -28,7 +29,6 @@ export default Ember.Component.extend({
 					var params = { Key: 'combined' };
 					var url = s3.getSignedUrl('getObject', params);
 					window.open(url);
-
 				});
 			});
 		}
