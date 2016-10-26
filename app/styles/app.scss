@@ -29,43 +29,41 @@
 	margin-left: 25%;
 }
 
-.new-upload-name {
+#new-upload-name {
 	display: inline-block;
 	width: 100%;
 	margin-bottom: 25px;
 }
 
 
-.name {
-	padding-left: 25%;
-}
 
-.name-field {
+#name-field {
 }
 
 
-.new-upload-course {
+#new-upload-course {
 	display: inline-block;
 	width: 100%;
 	margin-bottom: 20px;
 }
 
 
-.course {
-	padding-left: 25%;
-}
 
-.course-field {
+
+#course-field {
 
 }
 
-.new-upload-form {
+#new-upload-form {
 	margin-top: 25px;
 }
 
 
-.upload-form-submit {
+#upload-form-submit {
 
 	margin-left: 42%;
 	margin-top: 25px;
+}
+#files {
+	margin-left: 25%;
 }

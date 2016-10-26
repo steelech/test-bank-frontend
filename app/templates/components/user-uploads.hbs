@@ -3,6 +3,6 @@
 </button>
 {{#if formOpen}}
 	{{#modal-dialog translucentOverlay=true close="closeModalDialog"}}
-		{{upload-form submitForm="submitForm"}}	
+		{{upload-form closeModalDialog="closeModalDialog"}}	
 	{{/modal-dialog}}
 {{/if}}

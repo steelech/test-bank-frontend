@@ -1,25 +1,41 @@
-<div class="new-upload-header">
-	<h1>New Upload</h1>
-</div>
-<div class="new-upload-form">
-	<div class="new-upload-name">
-		<div class="name">
+<div id="new-upload-form">
+	<div id="new-upload-name">
+		<div id="name">
 			<b>Name</b>
 		</div>
-		<div class="name-field">
+		<div id="name-field">
 			{{input type="text" value=name class="form-control" placeholder="ex F15 Midterm 1" id="name"}}
 		</div>	
 	</div>
-	<div class="new-upload-course">
-		<div class="course">
+	<div id="new-upload-course">
+		<div id="course">
 			<b>Course</b>
 		</div>
 
-		<div class="course-field">
+		<div id="course-field">
 			{{input type="text" value=course class="form-control" placeholder="ex EECS 281" id="course"}}
 		</div>
 	</div>
-	<div class="upload-form-submit">
+	<div id="new-upload-files">
+		<div id="files">
+			<b>Files</b>
+		</div>
+
+		<div id="file-field">
+			
+			<div class="center">
+				<div class="file-upload">
+					<label class="btn btn-default btn-file">
+    						Browse <input type="file" value={{fileList}} style="display: none;" class="file-uploader" id="fileupload" multiple>
+			</label>
+				</div>
+			</div>
+			<ul id="show-files">
+			</ul>
+		</div>
+	</div>
+	<input id="hidden-email" type="hidden" value={{session.currentUser.email}}>
+	<div id="upload-form-submit">
 		<button class="btn btn-primary" {{action "submitForm"}}>Submit</button>
 	</div>
 </div>
