@@ -8,10 +8,12 @@ export default Ember.Component.extend({
 			this.get('session').invalidate();
 		},
 		viewImage() {
+			// get an identity_id and a token from the backend
 			this.get("ajax").request('/cognito', {
 				method: 'GET',
 				dataType: 'json',
 			}).then(function(response) {
+				// use the id and token to create temporary credentials
 				var AWS = window.AWS;
 				AWS.config.region = "us-west-2";
 				AWS.config.credentials = new AWS.CognitoIdentityCredentials({
