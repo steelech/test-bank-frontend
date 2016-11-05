@@ -41,7 +41,7 @@ export default Ember.Service.extend({
 			});
 			AWS.config.credentials.get(function() {
 				var date = new Date(AWS.config.credentials.expireTime);
-				Cookies.set("cognito_creds", { accessKeyId: AWS.config.credentials.accessKeyId, secretAccessKey: AWS.config.credentials.secretAccessKey }, { expires: date } );
+				Cookies.set("cognito_creds", { accessKeyId: AWS.config.credentials.accessKeyId, secretAccessKey: AWS.config.credentials.secretAccessKey, sessionToken: AWS.config.credentials.sessionToken }, { expires: date } );
 			});
 		})
 	},

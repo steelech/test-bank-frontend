@@ -15,6 +15,7 @@ export default Ember.Component.extend({
 			
 			AWS.config.accessKeyId = creds.accessKeyId;
 			AWS.config.secretAccessKey = creds.secretAccessKey;
+			AWS.config.sessionToken = creds.sessionToken;
 			AWS.config.region = "us-west-2";
 			
 			var s3 = new AWS.S3({
