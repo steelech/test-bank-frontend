@@ -4,14 +4,16 @@ export default Ember.Service.extend({
 	ajax: Ember.inject.service(),
 	session: Ember.inject.service(),
 	//authenticate, invalidate, isExpired, refreshCreds
-	authenticate() {
+	authenticate(userName) {
 		if(this.credsExpired()) {
-			this.refreshCreds();
+			this.refreshCreds(userName);
 		}
 	},
-	getCreds() {
+	getCreds(userName) {
 		if(this.credsExpired()) {
-			this.refreshCreds();
+			console.log("creds expired");
+			this.refreshCreds(userName);
+			return JSON.parse(Cookies.get("cognito_creds")); 
 		}
 		return JSON.parse(Cookies.get("cognito_creds")); 
 	},
@@ -24,7 +26,7 @@ export default Ember.Service.extend({
 	credsExpired() {
 		return (Cookies.get("cognito_creds") == null);
 	},
-	refreshCreds() {
+	refreshCreds(userName) {
 		this.get("ajax").request('/cognito', {
 			method: 'GET',
 			dataType: 'json',
@@ -41,7 +43,7 @@ export default Ember.Service.extend({
 			});
 			AWS.config.credentials.get(function() {
 				var date = new Date(AWS.config.credentials.expireTime);
-				Cookies.set("cognito_creds", { accessKeyId: AWS.config.credentials.accessKeyId, secretAccessKey: AWS.config.credentials.secretAccessKey }, { expires: date } );
+				Cookies.set("cognito_creds", { accessKeyId: AWS.config.credentials.accessKeyId, secretAccessKey: AWS.config.credentials.secretAccessKey, sessionToken: AWS.config.credentials.sessionToken }, { expires: date } );
 			});
 		})
 	},
