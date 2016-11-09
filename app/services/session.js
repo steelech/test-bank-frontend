@@ -12,7 +12,10 @@ export default ESASession.extend({
 		}
 	}),
 	sessionToken: function() {
-		console.log(this.get('data'));
+		return this.get('data').authenticated.token;
+	},
+	userName: function() {
+		return this.get('data').authenticated.email;
 	}
 
 });

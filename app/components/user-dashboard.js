@@ -11,11 +11,12 @@ export default Ember.Component.extend({
 		},
 		viewImage() {
 			var AWS = window.AWS;
-			var creds = this.get("cognito").getCreds();
+			this.get("cognito").getCreds();
 			
-			AWS.config.accessKeyId = creds.accessKeyId;
-			AWS.config.secretAccessKey = creds.secretAccessKey;
-			AWS.config.sessionToken = creds.sessionToken;
+			console.log(this.get("cognito").accessKeyId);	
+			AWS.config.accessKeyId = this.get("cognito").accessKeyId;
+			AWS.config.secretAccessKey = this.get("cognito").secretAccessKey;
+			AWS.config.sessionToken = this.get("cognito").awsSessionToken;
 			AWS.config.region = "us-west-2";
 			
 			var s3 = new AWS.S3({
