@@ -11,9 +11,7 @@ export default Ember.Component.extend({
 		},
 		viewImage() {
 			var AWS = window.AWS;
-			this.get("cognito").getCreds();
 			
-			console.log(this.get("cognito").accessKeyId);	
 			AWS.config.accessKeyId = this.get("cognito").accessKeyId;
 			AWS.config.secretAccessKey = this.get("cognito").secretAccessKey;
 			AWS.config.sessionToken = this.get("cognito").awsSessionToken;

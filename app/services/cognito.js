@@ -11,8 +11,10 @@ export default Ember.Service.extend({
 	init() {
 		this._super(...arguments);
 		this.set("userName", this.get("session").userName());
+		console.log("my username: ", this.get("session").userName());
 		this.set("deviseSessionToken", this.get("session").sessionToken());
 		if(this.credsExpired()) {
+			console.log("missing creds");
 			this.refreshCreds();
 		} else {
 			this.set("awsSessionToken", JSON.parse(Cookies.get("cognito_creds")).sessionToken);
@@ -28,25 +30,24 @@ export default Ember.Service.extend({
 			this.refreshCreds(userName);
 		}
 	},
-	getCreds(userName) {
-		console.log("getCreds");
-	},
-
-
 	// logout (remove the cookie(s))
 	invalidate() {
 		Cookies.remove("cognito_creds");
 	},
 	credsExpired() {
+		console.log(Cookies.get("cognito_creds"));
 		return (Cookies.get("cognito_creds") == null);
 	},
 	refreshCreds(userName) {
+		console.log("refreshing credentials");
 		var self = this;
+		var authorization = "Token token='" + this.get("userName") + "', email='" + this.get("deviseSessionToken") + "'";
 		this.get("ajax").request('/cognito', {
 			method: 'GET',
 			dataType: 'json',
-			headers: {"Authorization": "Token asdf"}
+			headers: {"Authorization": authorization}
 		}).then(function(response) {
+			console.log("suh, dude");
 			// use the id and token to create temporary credentials
 			var AWS = window.AWS;
 			AWS.config.region = "us-west-2";
@@ -58,8 +59,12 @@ export default Ember.Service.extend({
 				}
 			});
 			AWS.config.credentials.get(function() {
+				console.log("AWS.config.credentials.get()");
 				var date = new Date(AWS.config.credentials.expireTime);
 				Cookies.set("cognito_creds", { accessKeyId: AWS.config.credentials.accessKeyId, secretAccessKey: AWS.config.credentials.secretAccessKey, sessionToken: AWS.config.credentials.sessionToken }, { expires: date } );
+				console.log("awsSessionToken: ", AWS.config.credentials.sessionToken);
+				console.log("accessKeyId: ", AWS.config.credentials.accessKeyId);
+				console.log("secretAccessKey: ", AWS.config.credentials.secretAccessKey);
 				self.set("awsSessionToken", AWS.config.credentials.sessionToken);
 				self.set("accessKeyId", AWS.config.credentials.accessKeyId);
 				self.set("secretAccessKey", AWS.config.credentials.secretAccessKey);
