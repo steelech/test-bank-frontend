@@ -3,52 +3,64 @@ import Ember from 'ember';
 export default Ember.Service.extend({
 	ajax: Ember.inject.service(),
 	session: Ember.inject.service(),
+	// hit backend for token, get temporary creds, store in cookie
 	authenticate() {
-		// get the session data
-		// hit the server for a token
-		// create the creds using the token
-		// set the cookie 
-		// possibly return the creds in a promise? 
 		var self = this;
-		this.getSessionData().then(function(sessionData) {
-			var authorization = "Token token = '" + sessionData.userName + "', email='" + sessionData.sessionToken + "'";
-			return self.get("ajax").request('/cognito', {
-				method: 'GET',
-				dataType: 'json',
-				headers: { "Authorization": authorization }
-			});
-		}).then(function(response) {
-			console.log("token: ", response);
+		return this.getSessionData()
+			.then(function(sessionData) {
+				return self.getTokenFromBackend(sessionData);
+			})
+			.then(function(response) {
+				return self.setCreds(response);
+			})
+	},
+	getCreds() {
+
+	},
+	// uses a token from the backend to create temporary creds, and sets a cookie containing them
+	setCreds(response) {
+			var self = this;
 			var AWS = window.AWS;
 			AWS.config.region = "us-west-2";
-			AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+			return self.getCredsObject(response).then(function(creds) {
+					return self.saveCreds(creds);
+			})
+	},
+	// returns the raw CognitoIdentityCredentials object used for the temp creds
+	getCredsObject(response) {
+		var promise = new Promise(function(resolve, reject) {
+			var creds = new AWS.CognitoIdentityCredentials({
 				IdentityPoolId: 'us-west-2:956f2a12-44f6-4adb-906e-c0fc4c103649',
 				IdentityId: response.identity_id,
 				Logins: {
 					'cognito-identity.amazonaws.com': response.token
 				}
 			});
-
+			resolve({ creds_object: creds });
+		});
+	       return promise;	
+	},
+	// refreshes AWS credentials using cognito credentials object, sets cookie to new credentials
+	saveCreds(creds) {
+		var AWS = window.AWS;
+		var self = this;
+		AWS.config.region = "us-west-2";
+		AWS.config.credentials = creds.creds_object;
+		var promise = new Promise(function(resolve, reject) {
 			AWS.config.credentials.get(function() {
 				var date = new Date(AWS.config.credentials.expireTime);
 				Cookies.set("cognito_creds", { accessKeyId: AWS.config.credentials.accessKeyId, secretAccessKey: AWS.config.credentials.secretAccessKey, sessionToken: AWS.config.credentials.sessionToken }, { expires: date } );
-				self.set("awsSessionToken", AWS.config.credentials.sessionToken);
-				self.set("accessKeyId", AWS.config.credentials.accessKeyId);
-				self.set("secretAccessKey", AWS.config.credentials.secretAccessKey);
-				self.set("expires", date );
-			})
-
-
+				resolve({ accessKeyId: AWS.config.credentials.accessKeyId, secretAccessKey: AWS.config.credentials.secretAccessKey, sessionToken: AWS.config.credentials.sessionToken })
+			});
 		});
-		
-
+		return promise;
 	},
-	getCreds() {
-
-	},
+	// returns true if the creds cookie has expired
 	noCreds() {
 		return (Cookies.get("cognito_creds") == null);
 	},
+	// gets the session data which will be used for setting the authorization header 
+	// in ajax request
 	getSessionData() {
 		var self = this;
 		var promise = new Promise(function(resolve, reject) {
@@ -56,18 +68,14 @@ export default Ember.Service.extend({
 		});
 		return promise;
 	},
-	printSessionData(data) {
-		console.log("session data:", data);
-	},
+	// hits our backend for a token to be used for cognito creds
 	getTokenFromBackend(sessionData) {
-		console.log("session data:", sessionData);
 		var self = this;
-		var authorization = "Token token = '" + sessionData.userName + "', email='" + sessionData.sessionToken + "'";
-		var response = self.get("ajax").request("/cognito", {
+		var authorization = "Token token='" + sessionData.sessionToken + "', email='" + sessionData.userName + "'";
+		return self.get("ajax").request('/cognito', {
 			method: 'GET',
 			dataType: 'json',
-			headers: { 'Authorization': authorization }
+			headers: { "Authorization": authorization }
 		});
-
 	},
 });
