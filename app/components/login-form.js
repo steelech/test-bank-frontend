@@ -3,7 +3,7 @@ import Ember from 'ember';
 const { service } = Ember.inject;
 export default Ember.Component.extend({
 	session: service('session'),
-	cognito: service('cognito2'),
+	cognito: service('cognito'),
 	actions: {
 		// probably do some cognito stuff in here
 		authenticate: function() {
