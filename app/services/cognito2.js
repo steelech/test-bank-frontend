@@ -71,7 +71,7 @@ export default Ember.Service.extend({
 	// hits our backend for a token to be used for cognito creds
 	getTokenFromBackend(sessionData) {
 		var self = this;
-		var authorization = "Token token='" + sessionData.sessionToken + "', email='" + sessionData.userName + "'";
+		var authorization = "Token token=\"" + sessionData.sessionToken + "\", email=\"" + sessionData.userName + "\"";
 		return self.get("ajax").request('/cognito', {
 			method: 'GET',
 			dataType: 'json',
