@@ -14,6 +14,9 @@ export default Ember.Service.extend({
 				return self.setCreds(response);
 			})
 	},
+	invalidate() {
+		Cookies.remove("cognito_creds");
+	},
 	// returns a promise object containing the credentials
 	// refreshes them if needed
 	getCreds() {
