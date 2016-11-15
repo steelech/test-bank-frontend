@@ -1,5 +1,37 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+ul.tab {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border-radius: 8px;
+	li {
+		float: left;
+		text-align: center;
+		width: 50%;
+		font-size: 25px;
+		
+	}
+}
+.modal-tab-selected {
+	background-color: white;
+
+}
+.modal-tab-unselected {
+	background-color: #f1f1f1;
+	&:hover {
+		background-color: lightgrey;
+	}
+
+}
+.ember-modal-dialog {
+	padding: 0px;
+}
+
+.ember-application {
+	background-color: #252839;
+}
 .center {
 	text-align: center;
 }

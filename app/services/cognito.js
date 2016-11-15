@@ -22,7 +22,6 @@ export default Ember.Service.extend({
 	getCreds() {
 		var self = this;
 		var promise = new Promise(function(resolve, reject) {
-			// 
 			if(self.noCreds()) {
 				//call authenticate to get new creds
 				self.authenticate().then(function(creds) {
@@ -31,11 +30,9 @@ export default Ember.Service.extend({
 			} else {
 				// use the creds in the cookie
 				resolve({data: JSON.parse(Cookies.get("cognito_creds"))});
-
 			}
 		});
 		return promise;
-
 	},
 	// uses a token from the backend to create temporary creds, and sets a cookie containing them
 	setCreds(response) {
@@ -98,4 +95,3 @@ export default Ember.Service.extend({
 		});
 	},
 });
-
