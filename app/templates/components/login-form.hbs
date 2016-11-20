@@ -1,17 +1,15 @@
-<div class="center">
-	<div class="login-header">
-		<h1>Sign In</h1>
-	</div>	
-	<form class="login-form"{{action "authenticate" on="submit"}}>
-		<div class="login-id">
-			<label for="identification">Login</label>
-			{{input value=identification placeholder="Enter Login"}}
+<div id="login">
+	<div id="login-instructions">
+		Enter your email and password <b>to sign in</b>.
+	</div>
+	<form id="login-form"{{action "authenticate" on="submit"}}>
+		<div id="login-id">
+			{{input id="login-email" value=identification placeholder="Enter Login"}}
 		</div>
-		<div class="login-pass">
-			<label for="password">Password</label>
-			{{input value=password type="password" placeholder="Enter Password"}}
+		<div id="login-pass">
+			{{input id="login-password" value=password type="password" placeholder="Enter Password"}}
 		</div>
-		<div class="login-submit">
+		<div id="login-submit">
 			<button type="submit">Login</button>
 		</div>
 	</form>

@@ -1,4 +1,10 @@
 <ul class="tab">
-	<li class="modal-tab-selected sign-in-tab" {{action 'selectSignIn'}}>Sign in</li>
+	<li class="modal-tab-selected sign-in-tab" {{action 'selectSignIn'}}>Sign In</li>
 	<li class="modal-tab-unselected register-tab" {{action 'selectRegister'}}>Register</li>
 </ul>
+{{#if signIn}}
+	{{login-form}}
+{{else}}
+	{{signup-form}}
+{{/if}}
+
