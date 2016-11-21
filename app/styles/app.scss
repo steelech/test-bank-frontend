@@ -1,5 +1,25 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+#uploads-list-item {
+	&:hover {
+		background-color: #239653;
+	}
+
+}
+#uploads-navbar-text {
+	color: black;
+	&:hover {
+		background-color: #239653;
+	}
+}
+.uploads-navbar {
+	background: #2fcc71; 
+}
+#dashboard-container {
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-top: 10%;
+}
 .clickable-icon {
 	color: #2fcc71;
 	&:hover {
@@ -23,6 +43,7 @@
 }
 .uploads-list-header {
 	display: flex;
+	background: lightgrey;
 }
 .fa-download {
 	padding-right: 10px;
@@ -57,6 +78,7 @@
 	padding: 0px;
 }
 #uploads-header {
+	color: black;
 }
 .navbar-right {
 	margin-right: 50px;
@@ -206,10 +228,11 @@ ul.tab {
 	margin-left: 25%;
 }
 .new-upload-button {
-	background: 	#2fcc71;
-	border-color: transparent; 
-	&:hover {
-		background: #6ac590;
-	}
-
+	padding: 7.5%;
+	margin-top: 5%;
+        background: #222;
+	border-radius: 25px;
+	color: grey;
+	border-color: transparent;
+	
 }

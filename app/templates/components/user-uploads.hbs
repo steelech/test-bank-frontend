@@ -1,6 +1,3 @@
-<button class="btn btn-default" {{action "openUploadForm"}}>
-	New Upload
-</button>
 {{#if formOpen}}
 	{{#modal-dialog translucentOverlay=true close="closeModalDialog"}}
 		{{upload-form closeModalDialog="closeModalDialog"}}	

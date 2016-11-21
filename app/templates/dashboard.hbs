@@ -1,1 +1,18 @@
-{{user-dashboard uploads=model}}
+<div id="dashboard-container">
+	<nav class="navbar uploads-navbar">
+		<ul class="nav navbar-nav">
+			<li id="uploads-list-item"><a id="uploads-navbar-text">All</a></li>
+			<li id="uploads-list-item"><a id="uploads-navbar-text">My Uploads</a></li>
+			<li id="uploads-list-item"><a id="uploads-navbar-text">By Course</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li>
+				<div>
+					<a class="btn btn-default new-upload-button">New Upload</a>
+				</div>
+			</li>
+
+		</ul>
+	</nav>
+	{{user-dashboard uploads=model}}
+</div>

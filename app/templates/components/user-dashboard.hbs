@@ -1,18 +1,12 @@
 <div class="center">
-	<h1>Welcome</h1>
-		<div class="dashboard-options">
-			<div class="upload-link">
-				{{#link-to 'uploads'}}Upload a file{{/link-to}}
-			</div>
-			<div class="logout-link">
-				<a href="#" {{action 'logout'}}>Log out</a>
-			</div>
-			<button class="btn btn-default" {{action 'viewImage'}}>View Upload</button>	
-		</div>
-		<div class="dashboard-uploads">
-			{{user-uploads}}
-		</div>
-		<div class="my-uploads">
-			{{upload-list uploads=uploads}}
-		</div>
+<!--	<div class="dashboard-options">
+		<button class="btn btn-default" {{action 'viewImage'}}>View Upload</button>	
+	</div>
+	-->
+	<div class="dashboard-uploads">
+		{{user-uploads}}
+	</div>
+	<div class="my-uploads">
+		{{upload-list uploads=uploads}}
+	</div>
 </div>
