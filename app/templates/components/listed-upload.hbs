@@ -2,9 +2,20 @@
 	<div class="listed-upload-name">
 		{{name}}
 	</div>
+	<div class="listed-upload-course">
+		{{course}}
+	</div>
 	<div class={{iconClass}}>
 		<div class="clickable-icon" {{action 'viewUpload'}}>
-			{{fa-icon 'eye'}}
+			{{fa-icon 'download'}}
+		</div>
+		<div class="clickable-icon" {{action 'viewUpload'}}>
+			{{fa-icon 'info-circle'}}
 		</div>
 	</div>
+	{{#if showUploadModal}}
+		{{#modal-dialog translucentOverlay=true close="closeUpload"}}
+			{{upload-info}}
+		{{/modal-dialog}}
+	{{/if}}
 </div>

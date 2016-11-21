@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	uploadModal: false,
+	showUploadModal: false,
 	iconClass: 'hidden',
 	tagName: 'li',
 	classNames: ['list-group-item', 'listed-upload'],
@@ -16,8 +16,11 @@ export default Ember.Component.extend({
 			this.set("iconClass", "hidden");
 		},
 		viewUpload() {
-			console.log("viewing upload");
+			this.set("showUploadModal", true);
 
+		},
+		closeUpload() {
+			this.set("showUploadModal", false);
 		}
 	}
 });

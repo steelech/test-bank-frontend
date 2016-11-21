@@ -1,14 +1,38 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
-.fa-eye {
-	float: right;
+.clickable-icon {
+	&:hover {
+		color: grey;
+	}
+}
+.upload-viewer-header {
+	text-align: center;
+}
+.upload-info {
+
+}
+.upload-header-name {
+	width: 50%;
+}
+.upload-header-course {
+	width: 35%;
+}
+.uploads-list-header {
+	display: flex;
+}
+.fa-download {
 	padding-right: 10px;
 }
 .listed-upload-name {
-	width: 100%;
+	width: 50%;
+	padding-left: 15px;
+}
+.listed-upload-course {
+	width: 40%;
 }
 .listed-upload-icon {
-	width: 100%;
+	display: flex;
+	padding-top: 5px;
 	
 }
 .listed-upload-info {

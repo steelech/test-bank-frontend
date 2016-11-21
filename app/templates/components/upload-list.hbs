@@ -1,5 +1,13 @@
 <div>
 	<ul class="list-group">
+		<div class="uploads-list-header list-group-item">
+			<div class="upload-header-name">
+				<b>Name</b>
+			</div>
+			<div class="upload-header-course">
+				<b>Course</b>
+			</div>
+		</div>
 		{{#each uploads as |upload|}}
 			{{listed-upload name=upload.name course=upload.course s3_key=upload.s3_key s3_bucket=upload.s3_bucket}}
 		{{/each}}
