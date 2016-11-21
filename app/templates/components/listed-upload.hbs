@@ -1,4 +1,10 @@
-{{name}}
-{{course}}
-{{s3_key}}
-{{s3_bucket}}
+<div class="listed-upload-info" onmouseover={{action "over"}} onmouseout={{action "off"}}>
+	<div class="listed-upload-name">
+		{{name}}
+	</div>
+	<div class={{iconClass}}>
+		<div class="clickable-icon" {{action 'viewUpload'}}>
+			{{fa-icon 'eye'}}
+		</div>
+	</div>
+</div>

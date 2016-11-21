@@ -1,9 +1,30 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+.fa-eye {
+	float: right;
+	padding-right: 10px;
+}
+.listed-upload-name {
+	width: 100%;
+}
+.listed-upload-icon {
+	width: 100%;
+	
+}
+.listed-upload-info {
+	height: 30px;
+	display: flex;
+}
 #uploads-container {
 	padding-left: 20%;
 	padding-right: 20%;
 	padding-top: 10%;
+}
+.listed-upload {
+	padding: 0px;
+	&:hover {
+		background: rgb(133, 210, 165);
+	}
 }
 #uploads-header {
 }

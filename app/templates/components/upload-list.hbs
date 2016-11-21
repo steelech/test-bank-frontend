@@ -1,9 +1,7 @@
 <div>
 	<ul class="list-group">
 		{{#each uploads as |upload|}}
-		  	<li class="list-group-item">
-				{{listed-upload name=upload.name course=upload.course s3_key=upload.s3_key s3_bucket=upload.s3_bucket}}
-			</li>	
+			{{listed-upload name=upload.name course=upload.course s3_key=upload.s3_key s3_bucket=upload.s3_bucket}}
 		{{/each}}
 	</ul>
 </div>
