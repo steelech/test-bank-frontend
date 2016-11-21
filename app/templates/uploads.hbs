@@ -1,1 +1,15 @@
-{{jquery-upload}}
+<div id="uploads-container">
+	<div id="uploads-header">
+		<h1>Uploads</h1>
+	</div>
+	<div class="dropdown-divider"></div>
+	{{upload-list uploads=model}}
+	<button class="btn btn-default new-upload-button" {{action "openUploadForm"}}>
+		New Upload
+	</button>
+	{{#if formOpen}}
+		{{#modal-dialog translucentOverlay=true close="closeUploadForm"}}
+			{{upload-form}}	
+		{{/modal-dialog}}
+	{{/if}}
+</div>

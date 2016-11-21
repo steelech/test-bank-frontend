@@ -1,5 +1,12 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+#uploads-container {
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-top: 10%;
+}
+#uploads-header {
+}
 .navbar-right {
 	margin-right: 50px;
 }
@@ -8,7 +15,7 @@
 }
 .nav-dropdown-item {
 	&:hover {
-		background-color: lightgrey;
+		background: #6ac590;
 	}
 }
 .dropdown-item {
@@ -21,7 +28,7 @@
 .dropdown-divider {
 	height: 1px;
 	margin: 8px 1px;
-	background-color: #e5e5e5;
+	background-color: #2fcc71;
 }
 .fa-bars {
 	color: grey;
@@ -81,6 +88,7 @@ ul.tab {
 	padding: 0px;
 }
 .ember-application {
+		background: rgba(0, 0, 0, 0.68)
 }
 
 .dashboard-options {
@@ -145,4 +153,12 @@ ul.tab {
 }
 #files {
 	margin-left: 25%;
+}
+.new-upload-button {
+	background: 	#2fcc71;
+	border-color: transparent; 
+	&:hover {
+		background: #6ac590;
+	}
+
 }
