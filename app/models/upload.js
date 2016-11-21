@@ -6,5 +6,6 @@ export default DS.Model.extend({
 	s3_key: DS.attr('string'),
         s3_bucket: DS.attr('string'),
 	url: DS.attr('string'),
-	user: DS.attr('string')	
+	user: DS.attr('string'), 
+	file_type: DS.attr('string')	
 });

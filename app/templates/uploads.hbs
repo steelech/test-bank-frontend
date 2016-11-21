@@ -5,7 +5,7 @@
 	<div class="dropdown-divider"></div>
 	{{upload-list uploads=model}}
 	<button class="btn btn-default new-upload-button" {{action "openUploadForm"}}>
-		New Upload
+		New Upload {{fa-icon "upload"}}
 	</button>
 	{{#if formOpen}}
 		{{#modal-dialog translucentOverlay=true close="closeUploadForm"}}

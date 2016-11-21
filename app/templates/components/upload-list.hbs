@@ -7,9 +7,12 @@
 			<div class="upload-header-course">
 				<b>Course</b>
 			</div>
+			<div class="upload-header-filetype">
+				<b>Ext</b>
+			</div>
 		</div>
 		{{#each uploads as |upload|}}
-			{{listed-upload name=upload.name course=upload.course s3_key=upload.s3_key s3_bucket=upload.s3_bucket}}
+			{{listed-upload name=upload.name course=upload.course s3_key=upload.s3_key s3_bucket=upload.s3_bucket file_type=upload.file_type}}
 		{{/each}}
 	</ul>
 </div>

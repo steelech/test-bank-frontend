@@ -1,8 +1,9 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 .clickable-icon {
+	color: #2fcc71;
 	&:hover {
-		color: grey;
+		color: #6ac590;
 	}
 }
 .upload-viewer-header {
@@ -12,10 +13,13 @@
 
 }
 .upload-header-name {
-	width: 50%;
+	width: 40%;
 }
 .upload-header-course {
-	width: 35%;
+	width: 30%;
+}
+.upload-header-filetype {
+	padding-left: 5px;
 }
 .uploads-list-header {
 	display: flex;
@@ -24,11 +28,16 @@
 	padding-right: 10px;
 }
 .listed-upload-name {
-	width: 50%;
+	width: 40%;
 	padding-left: 15px;
 }
+
 .listed-upload-course {
-	width: 40%;
+	width: 30%;
+}
+
+.listed-upload-filetype {
+	width: 20%;
 }
 .listed-upload-icon {
 	display: flex;
@@ -46,9 +55,6 @@
 }
 .listed-upload {
 	padding: 0px;
-	&:hover {
-		background: rgb(133, 210, 165);
-	}
 }
 #uploads-header {
 }
