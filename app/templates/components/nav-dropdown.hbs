@@ -2,6 +2,14 @@
 	{{fa-icon "bars" size=1.5}}
 </a>
 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-	<a class="dropdown-item">Help</a>
-	<a class="dropdown-item">Log out</a>
+	<div>
+		<strong class="dropdown-item">{{session.currentUser.email}}</strong>
+	</div>
+	<div class="dropdown-divider"></div>
+	<div class="nav-dropdown-item">
+		<a class="dropdown-item">Help</a>
+	</div>
+	<div class="nav-dropdown-item" {{action 'logout'}}>
+		<a class="dropdown-item">Log out</a>
+	</div>
 </div>

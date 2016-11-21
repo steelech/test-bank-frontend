@@ -1,7 +1,34 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+.navbar-right {
+	margin-right: 50px;
+}
+.navbar-header {
+	margin-left: 50px;
+}
+.nav-dropdown-item {
+	&:hover {
+		background-color: lightgrey;
+	}
+}
+.dropdown-item {
+	padding-left: 10px;
+	color: black;
+}
+.dropdown-menu {
+
+}
+.dropdown-divider {
+	height: 1px;
+	margin: 8px 1px;
+	background-color: #e5e5e5;
+}
 .fa-bars {
 	color: grey;
+	&:hover {
+		color: white;
+	}
+
 }
 .nav-header {
 }
