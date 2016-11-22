@@ -20,11 +20,13 @@
 
 }
 #uploads-navbar-text-unselected {
+	background: #222;
 	color: lightgrey;
-	&:hover {
-		background: black;
-		color: #2fcc71;
-	}
+	
+	//&:hover {
+		//background: black;
+		//color: #2fcc71;
+	//}
 }
 .uploads-navbar {
 	background: #222; 
