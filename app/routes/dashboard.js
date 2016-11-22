@@ -5,6 +5,7 @@ const { service } = Ember.inject;
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	session: Ember.inject.service('session'),
+	
 	model: function(params) {
 		return this.get('store').findAll("upload");
 

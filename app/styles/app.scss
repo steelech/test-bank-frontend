@@ -1,5 +1,16 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+#new-upload-text {
+	padding-top: 5px;
+}
+#new-upload-button-container {
+	width: 40%;
+}
+.uploads-navbar-right {
+	width: 40%;
+}
+.uploads-navbar-left {
+}
 #uploads-list-item {
 	&:hover {
 		background-color: #239653;
@@ -7,13 +18,13 @@
 
 }
 #uploads-navbar-text {
-	color: black;
+	color: lightgrey;
 	&:hover {
 		background-color: #239653;
 	}
 }
 .uploads-navbar {
-	background: #2fcc71; 
+	background: #222; 
 }
 #dashboard-container {
 	padding-left: 20%;
@@ -81,7 +92,7 @@
 	color: black;
 }
 .navbar-right {
-	margin-right: 50px;
+	margin-right: 0px;
 }
 .navbar-header {
 	margin-left: 50px;
@@ -183,44 +194,29 @@ ul.tab {
 	width: 50%;
 	margin-left: 25%;
 }
-
 #course {
 	width: 50%;
 	margin-left: 25%;
 }
-
 #new-upload-name {
 	display: inline-block;
 	width: 100%;
 	margin-bottom: 25px;
 }
-
-
-
 #name-field {
 }
-
-
 #new-upload-course {
 	display: inline-block;
 	width: 100%;
 	margin-bottom: 20px;
 }
-
-
-
-
 #course-field {
 
 }
-
 #new-upload-form {
 	margin-top: 25px;
 }
-
-
 #upload-form-submit {
-
 	margin-left: 42%;
 	margin-top: 25px;
 }
@@ -228,11 +224,32 @@ ul.tab {
 	margin-left: 25%;
 }
 .new-upload-button {
-	padding: 7.5%;
-	margin-top: 5%;
-        background: #222;
+        background: #2fcc71;
 	border-radius: 25px;
-	color: grey;
 	border-color: transparent;
-	
+	color: white;
+	height: 35px;
+	width: 95px;
+	text-align: center;
+	margin-top: 6px;
+	&:hover {
+		height: 40px;
+		width: 100px;
+		margin-top: 4px;
+	}
+}
+.new-class-button {
+	margin-top: 6px;
+	background: black;
+	border-radius: 25px;
+	border-color: lightgrey;
+	color: white;
+	height: 35px;
+	width: 95px;
+	text-align: center;
+	&:hover {
+		height: 40px;
+		width: 100px;
+		margin-top: 4px;
+	}
 }
