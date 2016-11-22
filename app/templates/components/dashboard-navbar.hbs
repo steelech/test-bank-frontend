@@ -1,7 +1,7 @@
 <ul class="nav navbar-nav uploads-navbar-left">
-	<li id="uploads-list-item"><a id="uploads-navbar-text">All</a></li>
-	<li id="uploads-list-item"><a id="uploads-navbar-text">My Uploads</a></li>
-	<li id="uploads-list-item"><a id="uploads-navbar-text">By Course</a></li>
+	<li id="uploads-list-item" {{action 'setAll'}}><a class="uploads-all-filter" id="uploads-navbar-text-selected">All</a></li>
+	<li id="uploads-list-item" {{action 'setMyUploads'}}><a class="uploads-mine-filter" id="uploads-navbar-text-unselected">My Uploads</a></li>
+	<li id="uploads-list-item" {{action 'setByCourse'}}><a class="uploads-course-filter" id="uploads-navbar-text-unselected">By Course</a></li>
 </ul>
 <ul class="nav navbar-nav navbar-right uploads-navbar-right">
 	<li id="new-upload-button-container" {{action 'openNewUploadModal'}}>

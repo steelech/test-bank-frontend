@@ -10,6 +10,15 @@ export default Ember.Component.extend({
 		},
 		closeNewUploadModal() {
 			this.sendAction("closeNewUploadModal");
+		},
+		setAll() {
+			this.sendAction("setFilterType", "all");
+		},
+		setMyUploads() {
+			this.sendAction("setFilterType", "mine");
+		},
+		setByCourse() {
+			this.sendAction("setFilterType", "course");
 		}
 
 	}

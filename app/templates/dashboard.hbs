@@ -1,5 +1,5 @@
 <div id="dashboard-container">
-	{{dashboard-navbar openNewUploadModal="openNewUploadModal" closeNewUploadModal="closeNewUploadModal"}}
+	{{dashboard-navbar openNewUploadModal="openNewUploadModal" closeNewUploadModal="closeNewUploadModal" setFilterType='setFilterType'}}
 	{{upload-list uploads=model}}
 	{{#if showNewUploadModal}}
 		{{#modal-dialog translucentOverlay=true close="closeNewUploadModal"}}

@@ -14,7 +14,12 @@
 #uploads-list-item {
 
 }
-#uploads-navbar-text {
+#uploads-navbar-text-selected {
+	background: black;
+	color: #2fcc71;
+
+}
+#uploads-navbar-text-unselected {
 	color: lightgrey;
 	&:hover {
 		background: black;
