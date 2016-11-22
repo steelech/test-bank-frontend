@@ -1,8 +1,6 @@
 <div id="dashboard-container">
 	{{dashboard-navbar openNewUploadModal="openNewUploadModal" closeNewUploadModal="closeNewUploadModal"}}
-	<!--
-	{{user-dashboard uploads=model}}
-	-->
+	{{upload-list uploads=model}}
 	{{#if showNewUploadModal}}
 		{{#modal-dialog translucentOverlay=true close="closeNewUploadModal"}}
 		{{/modal-dialog}}

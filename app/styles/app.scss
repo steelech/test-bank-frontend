@@ -12,15 +12,13 @@
 .uploads-navbar-left {
 }
 #uploads-list-item {
-	&:hover {
-		background-color: #239653;
-	}
 
 }
 #uploads-navbar-text {
 	color: lightgrey;
 	&:hover {
-		background-color: #239653;
+		background: black;
+		color: #2fcc71;
 	}
 }
 .uploads-navbar {
