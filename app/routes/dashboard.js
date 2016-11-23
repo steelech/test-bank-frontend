@@ -7,6 +7,9 @@ const { service } = Ember.inject;
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	session: Ember.inject.service('session'),
 	filter: 'all',
+	init() {
+		this.set("filter", "all");
+	},
 	
 	model: function(params) {
 		return this.get('store').findAll("upload");
@@ -19,6 +22,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		},
 		setFilterType(type) {
 			var self = this;
+			this.set("filter", type);
 			this.removeSelected(type, self).then(function(array) {
 				self.styleTabs(array);
 			});
