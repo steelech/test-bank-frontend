@@ -18,6 +18,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 			this.get('session').invalidate();
 		},
 		setFilterType(type) {
+			var self = this;
 
 			//if(type == 'all') {
 				//this.setAllActive();
@@ -26,7 +27,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 			//} else {
 				//this.setByCourseActive();
 			//}
-			this.removeSelected(type);
+			//
+			var self = this;
+			this.removeSelected(type, self).then(function(array) {
+				self.stylingTouches(array);
+			});
 		}
 	},
 	setFilterStyling(type) {
@@ -36,34 +41,32 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		//
 			
 	},
-	setAllActive() {
-		$('.uploads-all-filter').attr('id', 'uploads-navbar-text-selected');
-		$('.uploads-mine-filter').attr('id', 'uploads-navbar-text-unselected');
-		$('.uploads-course-filter').attr('id', "uploads-navbar-text-unselected");
-	},
-	setMineActive() {
-		$('.uploads-all-filter').attr('id', 'uploads-navbar-text-unselected');
-		$('.uploads-mine-filter').attr('id', 'uploads-navbar-text-selected');
-		$('.uploads-course-filter').attr('id', "uploads-navbar-text-unselected");
-	},
-	setByCourseActive() {
-		$('.uploads-all-filter').attr('id', 'uploads-navbar-text-unselected');
-		$('.uploads-mine-filter').attr('id', 'uploads-navbar-text-unselected');
-		$('.uploads-course-filter').attr('id', "uploads-navbar-text-selected");
-	},
-	removeSelected(selected) {
-		var options = ['all', 'mine', 'course'];
-		var array = [];
-		var len = options.length;
-		for (var i=0;i<len;i++) {
-			if(options[i] != selected) {
-				array.push(options[i]);
+	removeSelected(selected, self) {
+		var array = ['all', 'mine', 'course']
+		var finalArray = [];
+		var self = this;
+		var promise = new Promise(function(resolve, reject) {
+			for(var i = 0;i < array.length;i++) {
+				if(selected != array[i]) {
+					finalArray.push(array[i]);
+				}
 			}
-		}
-		array.push('selected');
-		$('uploads' + array[0] + 'filter').attr('id', 'uploads-navbar-text-unselected');
-		$('uploads' + array[1] + 'filter').attr('id', 'uploads-navbar-text-unselected');
-		$('uploads', + array[2] + 'filter').attr('id', 'uploads-navbar-text-selected');
+			finalArray.push(selected);
+			resolve({array: finalArray});
+		});
+		return promise;
 
+	},
+	stylingTouches(newTabs) {
+		// the first two are unselected, the third is selected
+		var prefix = '.uploads-';
+		var suffix = '-filter';
+		var tabs = newTabs.array;
+		for(var i = 0;i < tabs.length - 1;i++) {
+			var selector = prefix + tabs[i] + suffix;
+			$(selector).attr("id", "uploads-navbar-text-unselected");
+		}
+		var selector = prefix + tabs[tabs.length - 1] + suffix;
+		$(selector).attr("id","uploads-navbar-text-selected");
 	}
 });

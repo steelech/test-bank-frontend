@@ -31,7 +31,7 @@ export default Ember.Service.extend({
 				// use the creds in the cookie
 				resolve({data: JSON.parse(Cookies.get("cognito_creds"))});
 			}
-		});
+	});
 		return promise;
 	},
 	// uses a token from the backend to create temporary creds, and sets a cookie containing them
