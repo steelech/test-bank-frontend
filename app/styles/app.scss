@@ -22,6 +22,10 @@
 #uploads-navbar-text-unselected {
 	background: #222;
 	color: lightgrey;
+	&:hover {
+		background: #191616;
+		color: #2fcc71;
+	}
 }
 .uploads-navbar {
 	background: #222; 

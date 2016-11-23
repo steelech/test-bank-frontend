@@ -19,18 +19,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		},
 		setFilterType(type) {
 			var self = this;
-
-			//if(type == 'all') {
-				//this.setAllActive();
-			//} else if(type == 'mine') {
-				//this.setMineActive();
-			//} else {
-				//this.setByCourseActive();
-			//}
-			//
-			var self = this;
 			this.removeSelected(type, self).then(function(array) {
-				self.stylingTouches(array);
+				self.styleTabs(array);
 			});
 		}
 	},
@@ -57,7 +47,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 		return promise;
 
 	},
-	stylingTouches(newTabs) {
+	styleTabs(newTabs) {
 		// the first two are unselected, the third is selected
 		var prefix = '.uploads-';
 		var suffix = '-filter';
