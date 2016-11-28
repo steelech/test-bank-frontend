@@ -4,6 +4,17 @@ export default Ember.Controller.extend({
 	session: Ember.inject.service('session'),
 	filter: 'all',
 	showNewUploadModal: false,
+	filterComponentName: Ember.computed('filter', {
+		get() {
+			if(this.get("filter") == "course") {
+				console.log("filter-by-course");
+				return 'course-filter';
+			} else {
+				console.log("other filter");
+				return 'gen-filter';
+			}
+		}
+	}),
 
 	actions: {
 
