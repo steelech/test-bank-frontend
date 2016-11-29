@@ -7,10 +7,8 @@ export default Ember.Controller.extend({
 	filterComponentName: Ember.computed('filter', {
 		get() {
 			if(this.get("filter") == "course") {
-				console.log("filter-by-course");
 				return 'course-filter';
 			} else {
-				console.log("other filter");
 				return 'gen-filter';
 			}
 		}

@@ -1,5 +1,19 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+.gen-filter-input {
+	border-radius: 25px;
+}
+.gen-filter {
+	width: 25%;
+	padding-left: 10px;
+	padding-bottom: 10px;
+
+}
+.course-selector {
+	width: 25%;
+	padding-left: 10px;
+	padding-bottom: 5px;
+}
 #new-upload-text {
 	padding-top: 5px;
 }
