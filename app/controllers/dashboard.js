@@ -15,6 +15,10 @@ export default Ember.Controller.extend({
 	}),
 
 	actions: {
+		updateModel() {
+			console.log("updating model");
+			this.set("model", this.get('store').query("upload", {name: "F15 midterm 1"}));
+		},
 
 		openNewUploadModal() {
 			this.set("showNewUploadModal", true);
@@ -26,6 +30,7 @@ export default Ember.Controller.extend({
 		setFilterType(type) {
 			var self = this;
 			this.set("filter", type);
+			this.send("updateModel");
 			self.removeSelected(type, self).then(function(array) {
 				self.styleTabs(array);
 			});
