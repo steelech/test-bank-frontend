@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
        	store: Ember.inject.service(),
         courses: null,
+        value: null,
         didInsertElement() {
 		var self = this;
 		var myCourses = Ember.A([]);
@@ -15,5 +16,10 @@ export default Ember.Component.extend({
 			self.set("courses", myCourses);
 		});
 	},
-
+        actions: {
+		chooseClass() {
+			console.log("value:", this.get("value"));
+			this.sendAction("chooseClass", this.get("value"));
+		}
+	},
 });

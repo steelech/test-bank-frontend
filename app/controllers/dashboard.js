@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 	session: Ember.inject.service('session'),
 	filter: 'all',
+	search: null,
+	course: null,
 	showNewUploadModal: false,
 	filterComponentName: Ember.computed('filter', {
 		get() {
@@ -13,18 +15,24 @@ export default Ember.Controller.extend({
 			}
 		}
 	}),
-
 	actions: {
+		//here, we need to gather all the filter info in order to update the model correctly
+		//things to consider are the filter type, and either the course name or the user input to the search box 
 		updateModel() {
+			var self = this;
+			self.buildQueryHash().then(function(queryHash) {
+				self.set("model", self.get("store").query("upload", queryHash));
+			})
 			console.log("updating model");
-			this.set("model", this.get('store').query("upload", {name: "F15 midterm 1"}));
 		},
-
 		openNewUploadModal() {
 			this.set("showNewUploadModal", true);
 		},
 		closeNewUploadModal() {
 			this.set("showNewUploadModal", false);
+		},
+		chooseClass(params) {
+			console.log("params", params);
 		},
 		
 		setFilterType(type) {
@@ -35,7 +43,6 @@ export default Ember.Controller.extend({
 				self.styleTabs(array);
 			});
 		},
-
 	},
 	removeSelected(selected, self) {
 		var array = ['all', 'mine', 'course']
@@ -51,10 +58,8 @@ export default Ember.Controller.extend({
 			resolve({array: finalArray});
 		});
 		return promise;
-
 	},
 	styleTabs(newTabs) {
-		// the first two are unselected, the third is selected
 		var prefix = '.uploads-';
 		var suffix = '-filter';
 		var tabs = newTabs.array;
@@ -64,5 +69,25 @@ export default Ember.Controller.extend({
 		}
 		var selector = prefix + tabs[tabs.length - 1] + suffix;
 		$(selector).attr("id","uploads-navbar-text-selected");
+	},
+	buildQueryHash() {
+		var self = this;
+		var promise = new Promise(function(resolve, reject) {
+			var queryHash = {};
+			// builds the hash to be sent to this.get("store").query("uploads", )
+			if(self.get("filter") == "all") {
+				//just care about setting the search param
+				console.log("all");
+			} else if(self.get("filter") == "mine") {
+				// need to set search param as well as 'mine' param
+				console.log("mine");
+			} else {
+				// need to set course param
+				console.log("by course");
+
+			}
+			resolve(queryHash);
+		});
+		return promise;
 	}
 });

@@ -9,9 +9,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 	
 	model: function(params) {
 		return this.get('store').findAll("upload");
-
 	},
-
 	actions: {
 		logout() {
 			this.get('session').invalidate();
