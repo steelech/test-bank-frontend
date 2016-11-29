@@ -1,7 +1,15 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 .gen-filter-input {
-	border-radius: 25px;
+	border-radius: 15px;
+	border: solid lightgrey;
+	border-width: 1px;
+	padding-left: 10px;
+	padding-right: 10px;
+	&:focus {
+		outline: none;
+	}
+
 }
 .gen-filter {
 	width: 25%;
