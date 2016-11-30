@@ -31,8 +31,11 @@ export default Ember.Controller.extend({
 		closeNewUploadModal() {
 			this.set("showNewUploadModal", false);
 		},
-		chooseClass(params) {
-			console.log("params", params);
+		chooseClass(course) {
+			console.log("course chosen: ", course);
+			this.set("course", course);
+			this.send("updateModel");
+
 		},
 		
 		setFilterType(type) {
@@ -75,16 +78,17 @@ export default Ember.Controller.extend({
 		var promise = new Promise(function(resolve, reject) {
 			var queryHash = {};
 			// builds the hash to be sent to this.get("store").query("uploads", )
-			if(self.get("filter") == "all") {
+			console.log("course: ", self.get("course"));
+			if(self.get("course")) {
 				//just care about setting the search param
-				console.log("all");
+				console.log("course");
+				queryHash["course"] = self.get("course");
 			} else if(self.get("filter") == "mine") {
 				// need to set search param as well as 'mine' param
 				console.log("mine");
 			} else {
 				// need to set course param
-				console.log("by course");
-
+				console.log("all");
 			}
 			resolve(queryHash);
 		});
