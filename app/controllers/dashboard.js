@@ -37,6 +37,11 @@ export default Ember.Controller.extend({
 			this.send("updateModel");
 
 		},
+		updateFilter(search) {
+			console.log("updating my filter");
+			this.set("search", search);
+			this.send("updateModel");
+		},
 		
 		setFilterType(type) {
 			var self = this;
@@ -79,15 +84,23 @@ export default Ember.Controller.extend({
 			var queryHash = {};
 			// builds the hash to be sent to this.get("store").query("uploads", )
 			console.log("course: ", self.get("course"));
-			if(self.get("course")) {
+			if(self.get("filter") == "course" && self.get("course")) {
 				//just care about setting the search param
 				console.log("course");
 				queryHash["course"] = self.get("course");
 			} else if(self.get("filter") == "mine") {
+				
+				queryHash["mine"] = true;
+				if(self.get("search")) {
+					queryHash["search"] = self.get("search");
+				}
 				// need to set search param as well as 'mine' param
 				console.log("mine");
 			} else {
 				// need to set course param
+				if(self.get("search")) {
+					queryHash["search"] = self.get("search")
+				}
 				console.log("all");
 			}
 			resolve(queryHash);
