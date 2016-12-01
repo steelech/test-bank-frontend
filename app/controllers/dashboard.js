@@ -17,6 +17,13 @@ export default Ember.Controller.extend({
 		}
 	}),
 	actions: {
+		newCourseForm(formData) {
+			console.log("new course in controller", formData);
+			var course = this.get("store").createRecord("course", formData);
+			course.save();
+			// use createRecord to hit the server?
+			// we need the response for validation (we don't want two of the same )
+		},
 		submitForm(formData) {
 			console.log("submitting form in controller:", formData);
 			this.createNewUpload(formData);
