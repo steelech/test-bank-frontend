@@ -19,6 +19,8 @@ export default Ember.Controller.extend({
 	actions: {
 		submitForm(formData) {
 			console.log("submitting form in controller:", formData);
+			this.createNewUpload(formData);
+				
 		},
 		//here, we need to gather all the filter info in order to update the model correctly
 		//things to consider are the filter type, and either the course name or the user input to the search box 
@@ -27,7 +29,6 @@ export default Ember.Controller.extend({
 			self.buildQueryHash().then(function(queryHash) {
 				self.set("model", self.get("store").query("upload", queryHash));
 			})
-			console.log("updating model");
 		},
 		openNewUploadModal() {
 			this.set("showNewUploadModal", true);
@@ -62,6 +63,12 @@ export default Ember.Controller.extend({
 			});
 		},
 	},
+	createNewUpload(formData) {
+		console.log("formData:", formData);
+		var upload = this.get("store").createRecord("upload", formData);
+		upload.save();
+
+	},
 	removeSelected(selected, self) {
 		var array = ['all', 'mine', 'course']
 		var finalArray = [];
@@ -92,26 +99,17 @@ export default Ember.Controller.extend({
 		var self = this;
 		var promise = new Promise(function(resolve, reject) {
 			var queryHash = {};
-			// builds the hash to be sent to this.get("store").query("uploads", )
-			console.log("course: ", self.get("course"));
 			if(self.get("filter") == "course" && self.get("course")) {
-				//just care about setting the search param
-				console.log("course");
 				queryHash["course"] = self.get("course");
 			} else if(self.get("filter") == "mine") {
-				
 				queryHash["mine"] = true;
 				if(self.get("search")) {
 					queryHash["search"] = self.get("search");
 				}
-				// need to set search param as well as 'mine' param
-				console.log("mine");
 			} else {
-				// need to set course param
 				if(self.get("search")) {
 					queryHash["search"] = self.get("search")
 				}
-				console.log("all");
 			}
 			resolve(queryHash);
 		});
