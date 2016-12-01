@@ -1,9 +1,15 @@
 <div id="dashboard-container">
-	{{dashboard-navbar openNewUploadModal="openNewUploadModal" closeNewUploadModal="closeNewUploadModal" setFilterType='setFilterType'}}
+	{{dashboard-navbar openNewUploadModal="openNewUploadModal" closeNewUploadModal="closeNewUploadModal" openNewCourseModal="openNewCourseModal" closeNewCourseModal="closeNewCourseModal" setFilterType='setFilterType'}}
 	{{component filterComponentName chooseClass="chooseClass" updateFilter="updateFilter"}}
 	{{upload-list uploads=model}}
 	{{#if showNewUploadModal}}
-		{{#modal-dialog translucentOverlay=true close="closeNewUploadModal"}}
+		{{#modal-dialog container-class="new-upload-container" translucentOverlay=true close="closeNewUploadModal"}}
+			{{new-upload submitForm="submitForm"}}
+		{{/modal-dialog}}
+	{{/if}}
+	{{#if showNewCourseModal}}
+		{{#modal-dialog translucentOverlay=true close="closeNewCourseModal"}}
+			{{new-course}}
 		{{/modal-dialog}}
 	{{/if}}
 </div>

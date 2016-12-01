@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
 	search: null,
 	course: null,
 	showNewUploadModal: false,
+        showNewCourseModal: false,
 	filterComponentName: Ember.computed('filter', {
 		get() {
 			if(this.get("filter") == "course") {
@@ -16,6 +17,9 @@ export default Ember.Controller.extend({
 		}
 	}),
 	actions: {
+		submitForm(formData) {
+			console.log("submitting form in controller:", formData);
+		},
 		//here, we need to gather all the filter info in order to update the model correctly
 		//things to consider are the filter type, and either the course name or the user input to the search box 
 		updateModel() {
@@ -28,8 +32,14 @@ export default Ember.Controller.extend({
 		openNewUploadModal() {
 			this.set("showNewUploadModal", true);
 		},
+		openNewCourseModal() {
+			this.set("showNewCourseModal", true);
+		},
 		closeNewUploadModal() {
 			this.set("showNewUploadModal", false);
+		},
+		closeNewCourseModal() {
+			this.set("showNewCourseModal", false);
 		},
 		chooseClass(course) {
 			console.log("course chosen: ", course);
