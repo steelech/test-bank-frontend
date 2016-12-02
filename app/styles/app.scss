@@ -1,5 +1,15 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+#draganddrophandler {
+	height: 80%;
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	border: solid .25px;
+	border-radius: 25px;
+	border-color: black;
+	background: lightgrey;
+}
 #upload-submit-button-container {
 	text-align: center;
 	padding-left: 25%;
@@ -252,7 +262,7 @@ ul.tab {
 }
 
 .file-upload {
-	display: inline-block;
+	height: 60%;
 }
 .ember-modal-dialog {
 	width: 500px;
