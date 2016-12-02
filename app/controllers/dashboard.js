@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
+
 export default Ember.Controller.extend({
 	session: Ember.inject.service('session'),
+        ajax: Ember.inject.service(),
 	filter: 'all',
 	search: null,
 	course: null,
@@ -71,6 +73,23 @@ export default Ember.Controller.extend({
 	},
 	createNewUpload(formData) {
 		console.log("formData:", formData);
+		var ajax = this.get("ajax");
+		var sessionToken = this.get("session").sessionToken();
+		var userName = this.get("session").userName();
+		var authorization = "Token token=\"" + sessionToken + "\", email=\"" + userName + "\""; 
+		var data = new FormData();
+		data.append("name", formData.name);
+		data.append("course", formData.course);
+		for(var i = 0;i < formData.file.length;i++) {
+			data.append("file", formData.file[i]);
+		}
+		ajax.request("/uploads", {
+			method: 'POST',
+			data: data, 
+			headers: {"Authorization": authorization },
+			contentType: false,
+			processData: false
+		});
 		//var upload = this.get("store").createRecord("upload", formData);
 		//upload.save();
 
