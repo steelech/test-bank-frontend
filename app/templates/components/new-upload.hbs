@@ -8,5 +8,8 @@
 	<div id="upload-course-input">
 		{{input placeholder="Course Name" value=course}}
 	</div>
-	{{file-upload}}
+	{{file-upload addFiles="addFiles"}}
+	<div id="new-upload-submit">
+		<span class="btn btn-default" {{action "submitForm"}}>Submit</span>
+	</div>
 </div>	

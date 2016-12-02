@@ -1,10 +1,18 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+#file-browse-container {
+	padding-left: 45%;
+	padding-right: 45%;
+}
+#file-browse {
+
+
+}
 #draganddrophandler {
-	height: 80%;
-	width: 80%;
-	margin-left: 10%;
-	margin-right: 10%;
+	height: 60%;
+	width: 60%;
+	margin-left: 20%;
+	margin-right: 20%;
 	border: solid .25px;
 	border-radius: 25px;
 	border-color: black;

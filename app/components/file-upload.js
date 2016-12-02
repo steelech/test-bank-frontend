@@ -3,6 +3,7 @@ import $ from 'npm:jquery';
 
 export default Ember.Component.extend({
 	classNames: ['file-upload'],
+	files: null,
 	didInsertElement() {
 		var self = this;
 		console.log("loaded page");
@@ -10,31 +11,30 @@ export default Ember.Component.extend({
 		var fileBrowse = $("#file-browse");
 
 		fileBrowse.on('change', function(e) {
-			console.log("file picked!");
+			var files = this.files;
+			self.addToUploadsList(files);
 		});
 		dragAndDrop.on('dragenter', function(e) {
 			e.stopPropagation();
 			e.preventDefault();
-			console.log("dragenter");
 		});
 
 		dragAndDrop.on('dragover', function(e) {
 			e.stopPropagation();
 			e.preventDefault();
-			console.log("dragover");
 		});
-
 		dragAndDrop.on('drop', function(e) {
 			e.preventDefault();
-			console.log("dropped!");
 			var files = e.originalEvent.dataTransfer.files;
-			self.handleFileUpload(files);
-
-
+			self.addToUploadsList(files);
 		});
 	},
-	handleFileUpload(files) {
-		console.log("files: ", files);
-	}
-
+	addToUploadsList(files) {
+		var i;
+		var newFiles = Ember.A([]);
+		for(i=0;i < files.length;i++) {
+			newFiles.push(files[i]);
+		}
+		this.sendAction("addFiles", newFiles);
+	},
 });

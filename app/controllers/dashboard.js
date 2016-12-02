@@ -27,7 +27,6 @@ export default Ember.Controller.extend({
 		submitForm(formData) {
 			console.log("submitting form in controller:", formData);
 			this.createNewUpload(formData);
-				
 		},
 		//here, we need to gather all the filter info in order to update the model correctly
 		//things to consider are the filter type, and either the course name or the user input to the search box 
@@ -72,8 +71,8 @@ export default Ember.Controller.extend({
 	},
 	createNewUpload(formData) {
 		console.log("formData:", formData);
-		var upload = this.get("store").createRecord("upload", formData);
-		upload.save();
+		//var upload = this.get("store").createRecord("upload", formData);
+		//upload.save();
 
 	},
 	removeSelected(selected, self) {
