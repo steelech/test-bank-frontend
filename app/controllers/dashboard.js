@@ -26,10 +26,6 @@ export default Ember.Controller.extend({
 			// use createRecord to hit the server?
 			// we need the response for validation (we don't want two of the same )
 		},
-		submitForm(formData) {
-			console.log("submitting form in controller:", formData);
-			this.createNewUpload(formData);
-		},
 		//here, we need to gather all the filter info in order to update the model correctly
 		//things to consider are the filter type, and either the course name or the user input to the search box 
 		updateModel() {
@@ -70,29 +66,6 @@ export default Ember.Controller.extend({
 				self.styleTabs(array);
 			});
 		},
-	},
-	createNewUpload(formData) {
-		console.log("formData:", formData);
-		var ajax = this.get("ajax");
-		var sessionToken = this.get("session").sessionToken();
-		var userName = this.get("session").userName();
-		var authorization = "Token token=\"" + sessionToken + "\", email=\"" + userName + "\""; 
-		var data = new FormData();
-		data.append("name", formData.name);
-		data.append("course", formData.course);
-		for(var i = 0;i < formData.file.length;i++) {
-			data.append("file", formData.file[i]);
-		}
-		ajax.request("/uploads", {
-			method: 'POST',
-			data: data, 
-			headers: {"Authorization": authorization },
-			contentType: false,
-			processData: false
-		});
-		//var upload = this.get("store").createRecord("upload", formData);
-		//upload.save();
-
 	},
 	removeSelected(selected, self) {
 		var array = ['all', 'mine', 'course']

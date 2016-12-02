@@ -4,7 +4,7 @@
 	{{upload-list uploads=model}}
 	{{#if showNewUploadModal}}
 		{{#modal-dialog container-class="new-upload-container" translucentOverlay=true close="closeNewUploadModal"}}
-			{{new-upload submitForm="submitForm"}}
+			{{new-upload}}
 		{{/modal-dialog}}
 	{{/if}}
 	{{#if showNewCourseModal}}
