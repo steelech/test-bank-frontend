@@ -14,8 +14,6 @@ export default Ember.Component.extend({
 		submitForm() {
 			var self = this;
 			this.collectFormInput().then(function(formData) {
-				// do the upload here instead
-				console.log("whatup hers' the form data: ", formData);
 				if(formData.file.length == 1) {
 					self.singleFileUpload(formData);
 				} else {
@@ -24,7 +22,6 @@ export default Ember.Component.extend({
 			});
 		},
        		addFiles(files) {
-			console.log("adding files");
 			if(this.get("files")) {
 				var newFiles = this.get("files");
 				var i;
@@ -37,7 +34,6 @@ export default Ember.Component.extend({
 			} else {
 				this.set("files", files);
 			}
-			console.log("new files:", this.get("files"));
 		}
 	},
         collectFormInput() {
@@ -93,7 +89,8 @@ export default Ember.Component.extend({
 			var s3 = new AWS.S3({
 				params: { Bucket: "test-bank-assets"}
 			});
-			var key = "combined";
+			// write key here
+			var key = formData.name.toLowerCase().replace(" ", "") + formData.course.toLowerCase().replace(" ", "");
 			console.log("filetype:", formData.file[0].type);
 			var params = {
 				Key: key,
@@ -108,7 +105,8 @@ export default Ember.Component.extend({
 					// create upload on backend using name and course
 					console.log("good upload", data);
 					var fileRecord = self.get("store").createRecord("upload", {name: formData.name, course: formData.course, s3_key: key});
-					fileRecord.save()
+					fileRecord.save();
+
 
 				}
 			})
