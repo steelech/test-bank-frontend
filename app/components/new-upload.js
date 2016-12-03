@@ -5,6 +5,7 @@ export default Ember.Component.extend({
 	session: Ember.inject.service(),
         ajax: Ember.inject.service(),	
 	cognito: Ember.inject.service(),
+	store: Ember.inject.service(),
         name: '',
         course: '',
         files: Ember.A([]),
@@ -15,7 +16,11 @@ export default Ember.Component.extend({
 			this.collectFormInput().then(function(formData) {
 				// do the upload here instead
 				console.log("whatup hers' the form data: ", formData);
-				self.createNewUpload(formData);
+				if(formData.file.length == 1) {
+					self.singleFileUpload(formData);
+				} else {
+					self.multiFileUpload(formData);
+				}
 			});
 		},
        		addFiles(files) {
@@ -52,7 +57,7 @@ export default Ember.Component.extend({
 		});
 		return promise;
 	},
-	createNewUpload(formData) {
+	multiFileUpload(formData) {
 		var ajax = this.get("ajax");
 		var sessionToken = this.get("session").sessionToken();
 		var userName = this.get("session").userName();
@@ -72,7 +77,11 @@ export default Ember.Component.extend({
 			processData: false
 		});
 	},
+	singleFileUpload(formData) {
+		this.uploadToS3(formData);
+	},
 	uploadToS3(formData) {
+		console.log("upload to s3", formData);
 		var self = this;
 		var AWS = window.AWS;
 		this.get("cognito").getCreds().then(function(creds) {
@@ -84,7 +93,26 @@ export default Ember.Component.extend({
 			var s3 = new AWS.S3({
 				params: { Bucket: "test-bank-assets"}
 			});
-		})
+			var key = "combined";
+			console.log("filetype:", formData.file[0].type);
+			var params = {
+				Key: key,
+				ContentType: formData.file[0].type,
+				Body: formData.file[0]
+			}
+
+			s3.putObject(params, function(err, data) {
+				if(err) {
+					console.log("bad upload");
+				} else {
+					// create upload on backend using name and course
+					console.log("good upload", data);
+					var fileRecord = self.get("store").createRecord("upload", {name: formData.name, course: formData.course, s3_key: key});
+					fileRecord.save()
+
+				}
+			})
+		});
 
 	}
 });
