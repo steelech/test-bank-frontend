@@ -62,6 +62,7 @@ export default Ember.Component.extend({
 		data.append("name", formData.name);
 		data.append("course", formData.course);
 		data.append("files", formData.file.length);
+		data.append("file_type", formData.file[0].type);
 		for(var i = 0;i < formData.file.length;i++) {
 			data.append("file-" + i, formData.file[i]);
 		}
@@ -71,6 +72,8 @@ export default Ember.Component.extend({
 			headers: {"Authorization": authorization },
 			contentType: false,
 			processData: false
+		}).then(function(results) {
+			console.log("response: ", results);
 		});
 	},
 	singleFileUpload(formData) {
@@ -104,12 +107,12 @@ export default Ember.Component.extend({
 				} else {
 					// create upload on backend using name and course
 					console.log("good upload", data);
-					var fileRecord = self.get("store").createRecord("upload", {name: formData.name, course: formData.course, s3_key: key});
+					var fileRecord = self.get("store").createRecord("upload", {name: formData.name, course: formData.course, s3_key: key, file_type: formData.file[0].type});
 					fileRecord.save();
 
 
 				}
-			})
+			});
 		});
 
 	}
