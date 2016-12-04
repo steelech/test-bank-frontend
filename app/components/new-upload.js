@@ -54,8 +54,10 @@ export default Ember.Component.extend({
 		return promise;
 	},
 	multiFileUpload(formData) {
+		var self = this;
 		var ajax = this.get("ajax");
 		var sessionToken = this.get("session").sessionToken();
+		var key = formData.name.toLowerCase().replace(" ", "") + formData.course.toLowerCase().replace(" ", "");
 		var userName = this.get("session").userName();
 		var authorization = "Token token=\"" + sessionToken + "\", email=\"" + userName + "\""; 
 		var data = new FormData();
@@ -73,7 +75,15 @@ export default Ember.Component.extend({
 			contentType: false,
 			processData: false
 		}).then(function(results) {
-			console.log("response: ", results);
+			console.log("results:", results.data.attributes);
+			//var newUpload = self.get("store").createRecord("upload",results.data.attributes); 
+			
+			var newUpload = self.get("store").createRecord("upload", {
+				name: formData.name,
+				course: formData.course,
+				file_type: formData.file[0].type,
+				s3_key: key
+			});
 		});
 	},
 	singleFileUpload(formData) {
@@ -109,11 +119,8 @@ export default Ember.Component.extend({
 					console.log("good upload", data);
 					var fileRecord = self.get("store").createRecord("upload", {name: formData.name, course: formData.course, s3_key: key, file_type: formData.file[0].type});
 					fileRecord.save();
-
-
 				}
 			});
 		});
-
 	}
 });
