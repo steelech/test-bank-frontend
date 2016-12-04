@@ -75,8 +75,6 @@ export default Ember.Component.extend({
 			contentType: false,
 			processData: false
 		}).then(function(results) {
-			console.log("results:", results.data.attributes);
-			//var newUpload = self.get("store").createRecord("upload",results.data.attributes); 
 			
 			var newUpload = self.get("store").createRecord("upload", {
 				name: formData.name,
@@ -84,13 +82,13 @@ export default Ember.Component.extend({
 				file_type: formData.file[0].type,
 				s3_key: key
 			});
+			self.sendAction("close");
 		});
 	},
 	singleFileUpload(formData) {
 		this.uploadToS3(formData);
 	},
 	uploadToS3(formData) {
-		console.log("upload to s3", formData);
 		var self = this;
 		var AWS = window.AWS;
 		this.get("cognito").getCreds().then(function(creds) {
@@ -119,6 +117,7 @@ export default Ember.Component.extend({
 					console.log("good upload", data);
 					var fileRecord = self.get("store").createRecord("upload", {name: formData.name, course: formData.course, s3_key: key, file_type: formData.file[0].type});
 					fileRecord.save();
+					self.sendAction("close");
 				}
 			});
 		});

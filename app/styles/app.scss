@@ -1,8 +1,17 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+#drag-and-drop-text {
+	margin-left: 25%;
+	width: 20%;
+	text-align: center
+
+}
+#drag-and-drop-or {
+	width: 10%;
+	text-align: center;
+
+}
 #file-browse-container {
-	padding-left: 45%;
-	padding-right: 45%;
 }
 #file-browse {
 
@@ -17,6 +26,7 @@
 	border-radius: 25px;
 	border-color: black;
 	background: lightgrey;
+	display: flex;
 }
 #upload-submit-button-container {
 	text-align: center;
@@ -270,7 +280,7 @@ ul.tab {
 }
 
 .file-upload {
-	height: 60%;
+	height: 50%;
 }
 .ember-modal-dialog {
 	width: 500px;
@@ -339,4 +349,8 @@ ul.tab {
 		width: 100px;
 		margin-top: 4px;
 	}
+}
+#new-upload-submit {
+	padding-left: 45%;
+	padding-right: 45%;
 }
